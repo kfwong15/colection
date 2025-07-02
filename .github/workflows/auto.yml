@@ -1,0 +1,53 @@
+name: IPTV 收集合併、去重與有效性檢查
+
+on:
+  schedule:
+    - cron: '10 23 * * *'  # 每天 23:10 自動執行
+  workflow_dispatch:       # 支援手動執行
+    branches:
+      - main
+
+jobs:
+  iptv_build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 檢出代碼
+      uses: actions/checkout@v4
+
+    - name: 🐍 設定 Python 環境
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.x
+
+    - name: 📦 安裝 Python 依賴
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt || true
+        pip install selenium requests futures eventlet opencv-python beautifulsoup4 translate termcolor func_timeout replace input opencc pypinyin pytz tqdm webdriver-manager
+
+    - name: ⚙️ 設定 Git 使用者資訊
+      run: |
+        git config --global user.name "WaykeYu"
+        git config --global user.email "waykeyu@example.com"
+
+    - name: 🧪 執行 IPTV 腳本
+      run: |
+        python py/net-collect.py
+        python py/collect.py
+        python py/integ.py
+        # 如需啟用確認有效性，取消下一行註解：
+        # python py/confirm.py
+
+    - name: 📝 更新 README.md 時間戳
+      run: |
+        echo -e "## 自動過濾重複與確認有效性 IPTV\n\n更新時間：$(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S')\n" > README.md
+
+    - name: ✅ 提交並推送更改
+      run: |
+        git config --local user.email "actions@126.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "📅 自動更新 IPTV 資料" || echo "No changes to commit"
+        git pull --rebase
+        git push
