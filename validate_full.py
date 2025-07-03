@@ -73,6 +73,11 @@ def main():
     base = os.getcwd()
     src_dir = os.path.join(base, "channels")
     dst_dir = os.path.join(base, "dist")
+
+    if not os.path.exists(src_dir):
+        print("❌ channels/ 文件夹不存在，请创建并放入 .m3u 文件")
+        return
+
     total = {}
 
     for fname in os.listdir(src_dir):
@@ -83,7 +88,7 @@ def main():
             total[fname] = count
 
     print("✅ 检测完成，各分类有效频道数：")
-    for k,v in total.items():
+    for k, v in total.items():
         print(f"   • {k}: {v}")
 
 if __name__ == "__main__":
