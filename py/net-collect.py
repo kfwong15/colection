@@ -17,7 +17,8 @@ FILE_PATH = os.path.join(LOCAL_REPO_PATH, "source/m3u/1888.m3u")
 URLS = {
     "成人/綜合頻道": "https://www.yibababa.com/vod/",
     "台湾直播源 (yibababa)": "https://yibababa.com/tv/#tw",
-    "台湾直播源 (aktv)": "https://aktv.top/"
+    "台湾直播源 (aktv)": "https://aktv.top/",
+    "https://raw.githubusercontent.com/kfwong15/AutoBot/refs/heads/main/ALL_IPTV.m3u"
 }
 
 # ✅ 步驟 1：確認是否需要 clone 倉庫
