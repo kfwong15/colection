@@ -20,6 +20,7 @@ URLS = {
     "台湾直播源 (aktv)": "https://aktv.top/"
 }
 
+# 用列表（不带键名）
 urls = [
     "https://raw.githubusercontent.com/kfwong15/AutoBot/refs/heads/main/ALL_IPTV.m3u"
 ]
