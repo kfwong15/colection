@@ -1,33 +1,33 @@
-name: IPTV 自动合并并过滤有效频道
+name: Validate IPTV
 
 on:
   schedule:
-    - cron: '10 23 * * *' # 每天 UTC+8 上午 7:10 运行
+    - cron: '*/6 * * * *'  # 每 6 分钟运行一次
   workflow_dispatch:
 
 jobs:
-  run:
+  validate_m3u:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ✅ Checkout 仓库
-        uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
 
-      - name: 🐍 设置 Python 环境
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
 
-      - name: 📦 安装依赖
-        run: pip install requests tqdm
+    - name: Install dependencies
+      run: pip install requests tqdm
 
-      - name: 🧠 运行合并与筛选脚本
-        run: python py/merge_and_filter.py
+    - name: Run Validator
+      run: python validate_full.py
 
-      - name: 📤 提交结果回 GitHub
-        run: |
-          git config --local user.name "GitHub Action"
-          git config --local user.email "action@github.com"
-          git add merge.m3u valid.m3u
-          git commit -m "🤖 自动合并 + 有效频道更新" || echo "No changes"
-          git push
+    - name: Commit & Push
+      run: |
+        git config --global user.name "kfwong15"
+        git config --global user.email "kfwong15@users.noreply.github.com"
+        git add valid.m3u
+        git commit -m "✅ Auto update valid IPTV channels at $(date '+%Y-%m-%d %H:%M:%S')" || echo "No changes"
+        git push
