@@ -18,8 +18,14 @@ URLS = {
     "成人/綜合頻道": "https://www.yibababa.com/vod/",
     "台湾直播源 (yibababa)": "https://yibababa.com/tv/#tw",
     "台湾直播源 (aktv)": "https://aktv.top/",
-    "https://raw.githubusercontent.com/kfwong15/AutoBot/refs/heads/main/ALL_IPTV.m3u"
+    "ALL_IPTV": "https://raw.githubusercontent.com/kfwong15/AutoBot/refs/heads/main/ALL_IPTV.m3u"
 }
+
+urls = [
+    "https://raw.githubusercontent.com/kiki4177/iptv/refs/heads/main/JSS"
+]
+
+
 
 # ✅ 步驟 1：確認是否需要 clone 倉庫
 if not os.path.exists(LOCAL_REPO_PATH):
