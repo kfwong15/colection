@@ -79,7 +79,6 @@ def main():
         return
 
     total = {}
-
     for fname in os.listdir(src_dir):
         if fname.lower().endswith(".m3u"):
             src = os.path.join(src_dir, fname)
