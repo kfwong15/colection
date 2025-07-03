@@ -1,6 +1,7 @@
 import os
 import subprocess
 import re
+import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -13,6 +14,11 @@ GITHUB_REPO_URL = "https://github.com/kfwong15/colection.git"
 LOCAL_REPO_PATH = "/home/runner/work/colection/colection"
 FILE_PATH = os.path.join(LOCAL_REPO_PATH, "source/m3u/1888.m3u")
 
+# ✅ 遠程 M3U 清單（將自動下載並合併）
+urls = [
+    "https://raw.githubusercontent.com/kfwong15/AutoBot/refs/heads/main/ALL_IPTV.m3u"
+]
+
 # ✅ 爬取的目標網址
 URLS = {
     "成人/綜合頻道": "https://www.yibababa.com/vod/",
@@ -20,25 +26,24 @@ URLS = {
     "台湾直播源 (aktv)": "https://aktv.top/"
 }
 
-# 用列表（不带键名）
-urls = [
-    "https://raw.githubusercontent.com/kfwong15/AutoBot/refs/heads/main/ALL_IPTV.m3u"
-]
-
-
-
 # ✅ 步驟 1：確認是否需要 clone 倉庫
 if not os.path.exists(LOCAL_REPO_PATH):
     print(f"⚠️ {LOCAL_REPO_PATH} 不存在，開始 Clone...")
     subprocess.run(["git", "clone", GITHUB_REPO_URL, LOCAL_REPO_PATH], check=True)
     print("✅ Clone 完成！")
 
-# ✅ 步驟 2：啟動無頭瀏覽器
-options = Options()
-options.add_argument("--headless")
-options.add_argument("--disable-gpu")
-options.add_argument("--no-sandbox")
-service = Service(ChromeDriverManager().install())
+# ✅ 步驟 2：下載遠程 M3U 並初始化內容
+m3u_content = "#EXTM3U\n"
+
+for url in urls:
+    print(f"🌐 正在下載遠程 M3U: {url}")
+    try:
+        resp = requests.get(url, timeout=10)
+        resp.raise_for_status()
+        m3u_content += "\n" + resp.text.strip() + "\n"
+        print("✅ 下載成功")
+    except Exception as e:
+        print(f"❌ 下載失敗: {e}")
 
 # ✅ 分類模板與關鍵字
 pattern = re.compile(r"(.+?),\s*(http[^\s]+\.m3u8)")
@@ -56,7 +61,14 @@ keywords = {
     "電影頻道": ["電影", "HBO", "Cinemax", "影視"]
 }
 
-# ✅ 步驟 3：逐一擷取直播源
+# ✅ 步驟 3：啟動無頭瀏覽器
+options = Options()
+options.add_argument("--headless")
+options.add_argument("--disable-gpu")
+options.add_argument("--no-sandbox")
+service = Service(ChromeDriverManager().install())
+
+# ✅ 步驟 4：逐一擷取直播源
 for category, url in URLS.items():
     driver = None
     try:
@@ -93,38 +105,37 @@ for category, url in URLS.items():
             if not assigned:
                 categories["未分類頻道"].append((channel_name, stream_url))
 
-# ✅ 步驟 4：組合 m3u 播放格式內容
-m3u_content = "#EXTM3U\n"
-
+# ✅ 步驟 5：組合 m3u 播放格式內容
 for category, channels in categories.items():
     if channels:
         m3u_content += f"\n#EXTGRP:{category}\n"
         for name, url in channels:
             m3u_content += f"#EXTINF:-1,{name}\n{url}\n"
 
-# ✅ 步驟 5：Git pull 最新倉庫內容
+# ✅ 步驟 6：Git pull 最新倉庫內容（避免衝突）
 try:
+    subprocess.run(["git", "stash"], cwd=LOCAL_REPO_PATH)
     subprocess.run(["git", "pull", "origin", "main"], cwd=LOCAL_REPO_PATH, check=True)
 except subprocess.CalledProcessError as e:
     print(f"⚠️ `git pull` 失敗: {e}")
 
-# ✅ 步驟 6：寫入 1888.m3u
+# ✅ 步驟 7：寫入 1888.m3u
 os.makedirs(os.path.dirname(FILE_PATH), exist_ok=True)
 with open(FILE_PATH, "w", encoding="utf-8") as f:
     f.write(m3u_content)
 
-# ✅ 步驟 7：設定 Git 使用者資訊
+# ✅ 步驟 8：設定 Git 使用者資訊
 subprocess.run(["git", "config", "--local", "user.name", "kfwong15"], cwd=LOCAL_REPO_PATH, check=True)
 subprocess.run(["git", "config", "--local", "user.email", "actions@kfwong15.com"], cwd=LOCAL_REPO_PATH, check=True)
 
-# ✅ 步驟 8：檢查是否有變更
+# ✅ 步驟 9：檢查是否有變更
 status_output = subprocess.run(["git", "status", "--porcelain"], cwd=LOCAL_REPO_PATH, capture_output=True, text=True)
 
 if not status_output.stdout.strip():
     print("⚠️ `1888.m3u` 沒有變更，不需要提交！")
     exit(0)
 
-# ✅ 步驟 9：提交並推送到 GitHub
+# ✅ 步驟 10：提交並推送到 GitHub
 try:
     subprocess.run(["git", "add", FILE_PATH], cwd=LOCAL_REPO_PATH, check=True)
     subprocess.run(["git", "commit", "-m", "📡 更新 1888.m3u，新增分類頻道"], cwd=LOCAL_REPO_PATH, check=True)
