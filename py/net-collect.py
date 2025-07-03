@@ -16,7 +16,10 @@ FILE_PATH = os.path.join(LOCAL_REPO_PATH, "source/m3u/1888.m3u")
 
 # ✅ 遠程 M3U 清單（將自動下載並合併）
 urls = [
-    "https://raw.githubusercontent.com/kfwong15/AutoBot/refs/heads/main/ALL_IPTV.m3u"
+    "https://raw.githubusercontent.com/kfwong15/AutoBot/refs/heads/main/ALL_IPTV.m3u", 
+    "https://raw.githubusercontent.com/kiki4177/iptv/refs/heads/main/JSS", 
+    "https://raw.githubusercontent.com/reynelda86/MyTv/refs/heads/main/MyTv.m3u",
+    #"55555"
 ]
 
 # ✅ 爬取的目標網址
