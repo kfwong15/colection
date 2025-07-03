@@ -1,4 +1,4 @@
-name: IPTV Validator
+name: IPTV Auto Validate
 
 on:
   schedule:
@@ -11,16 +11,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install deps
+    - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Run Validation
+    - name: Run Validator
       run: python validate_full.py
 
-    - name: Commit dist files
+    - name: Commit valid results
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add dist/*.m3u
-        git commit -m "chore: update dist/*.m3u [skip ci]" || echo "no changes"
-        git push
+        git add dist/*.m3u || true
+        git commit -m "update: valid IPTV channels [skip ci]" || echo "no changes"
+        git push || true
