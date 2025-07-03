@@ -17,12 +17,11 @@ FILE_PATH = os.path.join(LOCAL_REPO_PATH, "source/m3u/1888.m3u")
 URLS = {
     "成人/綜合頻道": "https://www.yibababa.com/vod/",
     "台湾直播源 (yibababa)": "https://yibababa.com/tv/#tw",
-    "台湾直播源 (aktv)": "https://aktv.top/",
-    "ALL_IPTV": "https://raw.githubusercontent.com/kfwong15/AutoBot/refs/heads/main/ALL_IPTV.m3u"
+    "台湾直播源 (aktv)": "https://aktv.top/"
 }
 
 urls = [
-    "https://raw.githubusercontent.com/kiki4177/iptv/refs/heads/main/JSS"
+    "https://raw.githubusercontent.com/kfwong15/AutoBot/refs/heads/main/ALL_IPTV.m3u"
 ]
 
 
