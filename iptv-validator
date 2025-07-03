@@ -1,0 +1,6 @@
+/
+├── merge.m3u            ← 你自己的 IPTV 文件
+├── validate_full.py     ← 检测脚本（详见下面）
+└── .github/
+    └── workflows/
+        └── validate.yml ← GitHub Actions 流程（详见下面）
