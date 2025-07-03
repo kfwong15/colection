@@ -1,37 +1,26 @@
-name: Validate IPTV
+name: IPTV Validator
 
 on:
   schedule:
-    - cron: '0 */6 * * *'   # 每 6 小时运行一次
+    - cron: '0 */6 * * *'  # 每 6 小时运行
   workflow_dispatch: {}
 
 jobs:
-  check:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+    - name: Install deps
+      run: pip install -r requirements.txt
 
-      - name: Install Dependencies
-        run: pip install requests tqdm
+    - name: Run Validation
+      run: python validate_full.py
 
-      - name: Ensure merge.m3u exists
-        run: |
-          if [ ! -f merge.m3u ]; then
-            echo "#EXTM3U" > merge.m3u
-          fi
-
-      - name: Run Validator
-        run: python validate_full.py
-
-      - name: Commit valid.m3u
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add valid.m3u || true
-          git commit -m "chore: update valid.m3u [skip ci]" || echo "no changes"
-          git push
+    - name: Commit dist files
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add dist/*.m3u
+        git commit -m "chore: update dist/*.m3u [skip ci]" || echo "no changes"
+        git push
