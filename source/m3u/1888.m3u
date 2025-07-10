@@ -12329,7 +12329,7 @@ https://linearjitp-playback.astro.com.my/dash-wv/linear/5172/default_ott.mpd
 
 
 #EXTM3U url-tvg="https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml,https://raw.githubusercontent.com/AqFad2811/epg/main/unifitv.xml,https://raw.githubusercontent.com/AqFad2811/epg/main/astro.xml,https://raw.githubusercontent.com/azimabid00/epg/main/unifi_epg.xml,https://i.mjh.nz/PlutoTV/all.xml,https://i.mjh.nz/SamsungTVPlus/us.xml,https://i.mjh.nz/SamsungTVPlus/kr.xml,https://epg.pw/xmltv/epg_MY.xml,https://raw.githubusercontent.com/azimabid00/epg/main/astro_epg.xml,https://raw.githubusercontent.com/AqFad2811/epg/main/indonesia.xml" refresh="1440"
-# 更新时间 2025-07-10 07:34:56 MYT
+# 更新时间 2025-07-11 07:34:07 MYT
 
 #EXTM3U billed-msg="1 ID 1 DEVICE"
 ##########################################################################################################################
@@ -18016,8 +18016,6 @@ http://[2409:8087:7008:20::d]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/322
 http://[2409:8087:7008:20::c]:80/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226950/index.m3u8
 #EXTINF:-1,CCTV风云音乐
 http://[2409:8087:7008:20::d]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/3221226953/index.m3u8
-#EXTINF:-1,CCTV电视指南
-http://[2409:8087:7008:20::a]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/3221226987/index.m3u8
 #EXTINF:-1,CCTV4
 http://39.134.136.161:6610/000000001000/5000000011000031102/index.m3u8
 #EXTINF:-1,CCTV5
@@ -18066,8 +18064,6 @@ http://[2409:8087:7008:20::d]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/322
 http://[2409:8087:7008:20::c]:80/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226950/index.m3u8
 #EXTINF:-1,CCTV风云音乐
 http://[2409:8087:7008:20::d]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/3221226953/index.m3u8
-#EXTINF:-1,CCTV电视指南
-http://[2409:8087:7008:20::a]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/3221226987/index.m3u8
 #EXTINF:-1,CCTV4
 http://39.134.136.161:6610/000000001000/5000000011000031102/index.m3u8
 #EXTINF:-1,CCTV5
@@ -18116,8 +18112,6 @@ http://[2409:8087:7008:20::d]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/322
 http://[2409:8087:7008:20::c]:80/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226950/index.m3u8
 #EXTINF:-1,CCTV风云音乐
 http://[2409:8087:7008:20::d]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/3221226953/index.m3u8
-#EXTINF:-1,CCTV电视指南
-http://[2409:8087:7008:20::a]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/3221226987/index.m3u8
 #EXTINF:-1,CCTV4
 http://39.134.136.161:6610/000000001000/5000000011000031102/index.m3u8
 #EXTINF:-1,CCTV5
@@ -18356,6 +18350,8 @@ http://[2409:8087:7008:20::8]:80/dbiptv.sn.chinamobile.com/PLTV/88888888/224/322
 http://[2409:8087:7008:20::c]:80/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226956/index.m3u8
 #EXTINF:-1,第一剧场
 http://[2409:8087:7008:20::c]:80/dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226959/1.m3u8
+#EXTINF:-1,指南
+http://[2409:8087:7008:20::a]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/3221226987/index.m3u8
 #EXTINF:-1,CHC影迷电影
 http://[2409:8087:7008:20::9]:80/dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226463/1.m3u8
 #EXTINF:-1,CHC影迷电影
@@ -18640,6 +18636,8 @@ http://[2409:8087:7008:20::8]:80/dbiptv.sn.chinamobile.com/PLTV/88888888/224/322
 http://[2409:8087:7008:20::c]:80/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226956/index.m3u8
 #EXTINF:-1,第一剧场
 http://[2409:8087:7008:20::c]:80/dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226959/1.m3u8
+#EXTINF:-1,指南
+http://[2409:8087:7008:20::a]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/3221226987/index.m3u8
 #EXTINF:-1,CHC影迷电影
 http://[2409:8087:7008:20::9]:80/dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226463/1.m3u8
 #EXTINF:-1,CHC影迷电影
@@ -18924,6 +18922,8 @@ http://[2409:8087:7008:20::8]:80/dbiptv.sn.chinamobile.com/PLTV/88888888/224/322
 http://[2409:8087:7008:20::c]:80/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226956/index.m3u8
 #EXTINF:-1,第一剧场
 http://[2409:8087:7008:20::c]:80/dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226959/1.m3u8
+#EXTINF:-1,指南
+http://[2409:8087:7008:20::a]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/3221226987/index.m3u8
 #EXTINF:-1,CHC影迷电影
 http://[2409:8087:7008:20::9]:80/dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226463/1.m3u8
 #EXTINF:-1,CHC影迷电影
